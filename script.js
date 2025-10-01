@@ -100,21 +100,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add ripple effect to buttons
     function createRipple(event) {
         const button = event.currentTarget;
+        
+        // Remove any existing ripples first
+        const existingRipples = button.querySelectorAll('.ripple');
+        existingRipples.forEach(ripple => ripple.remove());
+        
         const ripple = document.createElement('span');
         const diameter = Math.max(button.clientWidth, button.clientHeight);
         const radius = diameter / 2;
         
         ripple.style.width = ripple.style.height = `${diameter}px`;
-        ripple.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-        ripple.style.top = `${event.clientY - button.offsetTop - radius}px`;
+        ripple.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+        ripple.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
         ripple.classList.add('ripple');
         
-        const existingRipple = button.querySelector('.ripple');
-        if (existingRipple) {
-            existingRipple.remove();
-        }
-        
         button.appendChild(ripple);
+        
+        // Remove ripple after animation
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
     }
     
     document.querySelectorAll('.btn').forEach(button => {

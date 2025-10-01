@@ -306,6 +306,7 @@ nav {
     background: rgba(255, 255, 255, 0.2);
     transform: translate(-50%, -50%);
     transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
 }
 
 .btn:hover::before {
@@ -320,8 +321,11 @@ nav {
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
     box-shadow: 0 8px 32px rgba(99, 102, 241, 0.6);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
 }
 
 .btn-secondary {
@@ -333,9 +337,12 @@ nav {
 }
 
 .btn-secondary:hover {
-    transform: translateY(-3px);
     border-color: var(--primary);
     box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
 }
 
 .btn span {
@@ -500,12 +507,12 @@ main {
 .company-badge {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
-    border: 1px solid rgba(99, 102, 241, 0.3);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
+    border: 1px solid rgba(99, 102, 241, 0.4);
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--text-primary);
 }
 
 .job-period {
@@ -672,9 +679,9 @@ main {
 
 .contact-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 800px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -743,6 +750,8 @@ main {
     text-align: left;
     position: relative;
     z-index: 1;
+    min-width: 0;
+    flex: 1;
 }
 
 .contact-label {
@@ -755,6 +764,9 @@ main {
     font-size: 1.1rem;
     color: var(--text-primary);
     font-weight: 600;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
 }
 
 /* Footer */
